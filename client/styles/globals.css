@@ -28,3 +28,7 @@ body {
   height: 100vh;
   margin: 0 auto;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
