@@ -5,7 +5,16 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        hemocyanin: 'var(--hemocyanin)',
+        ice: 'var(--ice)',
+        plum: 'var(--plum)',
+        purpleHaze: 'var(--purpleHaze)',
+        siphon: 'var(--siphon)',
+        sohoLights: 'var(--sohoLights)',
+      }
+    },
   },
   plugins: [],
 }
