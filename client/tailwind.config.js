@@ -13,6 +13,7 @@ module.exports = {
         purpleHaze: 'var(--purpleHaze)',
         siphon: 'var(--siphon)',
         sohoLights: 'var(--sohoLights)',
+        purpleFunk: 'var(--purpleFunk)'
       }
     },
   },

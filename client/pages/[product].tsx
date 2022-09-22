@@ -12,7 +12,7 @@ export default function Product() {
   if (error) return `Error! ${error.message}`
   return (
     <>
-      <div className="flex flex-col justify-center max-w-xs m-auto">
+      <div>
         <Header />
         <ProductCard allProducts={data.allProducts} />
       </div>

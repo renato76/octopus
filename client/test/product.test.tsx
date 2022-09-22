@@ -1,8 +1,8 @@
 import { render, fireEvent } from "@testing-library/react";
-import Product from "../pages/product";
+import ProductCard from "../components/ProductCard";
 
 test("should be able to increase and decrease product quantity", async () => {
-  const { getByText, getByTitle } = render(<Product />);
+  const { getByText, getByTitle } = render(<ProductCard allProducts={[]} />);
 
   const increaseQuantity = getByText("+");
 
@@ -19,7 +19,7 @@ test("should be able to increase and decrease product quantity", async () => {
 });
 
 test("should be able to add items to the basket", async () => {
-  const { getByText, getByTitle } = render(<Product />);
+  const { getByText, getByTitle } = render(<ProductCard allProducts={[]} />);
 
   const increaseQuantity = getByText("+");
 
