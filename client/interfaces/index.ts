@@ -1,4 +1,4 @@
-export interface ProductFields {
+export interface CartItemsTypes {
   allProducts: {
     fields: {
       id: number;
@@ -15,6 +15,7 @@ export interface ProductFields {
       model_code: string;
       colour: string;
       img_url: string;
+      cartTotalQuantity?: number;
     }
-  } []
+  } [],
 }
