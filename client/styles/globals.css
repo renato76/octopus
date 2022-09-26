@@ -1,4 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Octopus Energy brand colours used in the design */
+
 :root {
   --hemocyanin: #100030;
   --ice: #f0ffff;
@@ -6,6 +11,7 @@
   --purpleHaze: #a49fc8;
   --siphon: #100030;
   --sohoLights: #f050f8;
+  --purpleFunk: #1E074B;
 }
 
 html,
@@ -28,3 +34,5 @@ body {
   height: 100vh;
   margin: 0 auto;
 }
+
+

@@ -67,3 +67,19 @@ Notes:
 - This has not been set up with and type of CSS-in-JS, but if that is something you would like to add, please feel free.
 
 Best of luck!
+
+## Summary of tech test from Ren
+
+Thanks for giving me this tech test, it was fun to work on. 
+Here is a quick summary of what I added:
+
+- Visual design implemented
+- Increase and decrease item quantity
+- Add to cart
+
+
+Notes:
+
+I have not finished this, as I am not managing to get the tests to pass, I had some challenges in getting the component to render correctly in the test. This is an area I would need some help on, however in terms of writing tests, I am able to write them using both React Testing library and Enzyme. Personally I prefer RTL as it's more about user interaction.
+
+
