@@ -1,43 +1,33 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import { FaMinus, FaPlus } from 'react-icons/fa'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { CartItemsTypes } from '../interfaces'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
-  const [cartQuantity, setCartQuantity] = useState(1)
-  const [addedToCart, setAddedToCart] = useState(false)
-  const [cartItems, setCartItems] = useState(allProducts)
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, cartQuantity, openCart, closeCart } = useShoppingCart()
+  const quantity = getItemQuantity(allProducts[0].fields.id)
+  console.log('cartItems >>>', cartItems)
 
-    const incrementButtonHandler = (event: React.MouseEvent) => {
+  const [addToCartQuantity, setAddToCartQuantity] = useState(1)
+  const [addedToCart, setAddedToCart] = useState(false)
+
+
+  const incrementButtonHandler = (event: React.MouseEvent) => {
     event.preventDefault()
-    setCartQuantity(cartQuantity + 1)
+    setAddToCartQuantity(addToCartQuantity + 1)
   }
 
   const decrementButtonHandler = (event: React.MouseEvent) => {
     event.preventDefault()
-    if (cartQuantity > 1) {
-      setCartQuantity(cartQuantity - 1)
+    if (addToCartQuantity > 1) {
+      setAddToCartQuantity(addToCartQuantity - 1)
     }
   }
 
-  const addQuantity = (qty: number) => {
-    let clonedCartItems = [...cartItems]
-    clonedCartItems = JSON.parse(JSON.stringify(clonedCartItems))
-    clonedCartItems[0].fields.cartTotalQuantity = qty
-    setCartItems(clonedCartItems)
-  }
-
-  useEffect(() => {
-    addQuantity(cartQuantity)
-  }, [cartQuantity])
-
-  const handleAddToCart = () => {
-    setAddedToCart(true)
-  }
-
   const renderCartData = () => {
-    return cartItems.map((item, index) => {
+    return allProducts.map((item, index) => {
       const { 
         id, 
         name, 
@@ -67,12 +57,15 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                   className="cursor-pointer" 
                 />
               </div>
-              <div className="flex items-center mb-3">
+              <button 
+                className="flex items-center mb-3 text-white cursor-pointer"
+                onClick={openCart}
+              >
                 {addedToCart && (
-                  <span className="mr-2 mt-1">{cartItems[0].fields.cartTotalQuantity}</span>
+                  <span className=" mr-2 mt-1">{cartItems[0].quantity}</span>
                 )}
                 <FaShoppingBasket size={30} />
-              </div>
+              </button>
             </div>
             <div className="flex  flex-col justify-center">
               <div>
@@ -100,13 +93,13 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                   </div>
                   <div className="flex">
                     <a
-                      className={`${cartQuantity === 1 ? 'opacity-40 pointer-events-none': ''} cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights`} 
+                      className={`${addToCartQuantity === 1 ? 'opacity-40 pointer-events-none': ''} cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights`} 
                       onClick={decrementButtonHandler}
                       >
                       <FaMinus/>
                     </a>
                     <div title="Current quantity" className="w-4 flex flex-col justify-center items-center text-xl">
-                      {cartQuantity}
+                      {addToCartQuantity}
                     </div>
                     <div title="+" className="cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights" onClick={incrementButtonHandler}>
                       <FaPlus />
@@ -117,7 +110,10 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
               <div className="my-4">
                 <button 
                   className="bg-sohoLights cursor-pointer w-full text-hemocyanin py-4 border rounded-lg border-transparent"
-                  onClick={() => handleAddToCart()}
+                  onClick={() => {
+                    increaseCartQuantity(id, addToCartQuantity),
+                    setAddedToCart(true)
+                  }}
                 >
                   Add to cart
                 </button>
