@@ -1,13 +1,16 @@
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import apolloClient from '../graphql/apolloClient'
+import { ShoppingCartProvider } from '../context/ShoppingCartContext'
 import "../styles/globals.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={apolloClient}>
+   <ShoppingCartProvider>
+     <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
-    </ApolloProvider>
+     </ApolloProvider>
+   </ShoppingCartProvider>
   )
 }
 
