@@ -1,8 +1,6 @@
 module.exports = {
   products: [
     {
-      model: "products.product",
-      pk: 1,
       fields: {
         id: 1,
         name: "Energy saving light bulb",
