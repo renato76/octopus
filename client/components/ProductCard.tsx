@@ -8,7 +8,6 @@ import { useShoppingCart } from '../context/ShoppingCartContext'
 const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, cartQuantity, openCart, closeCart } = useShoppingCart()
   const quantity = getItemQuantity(allProducts[0].fields.id)
-  console.log('cartItems >>>', cartItems)
 
   const [addToCartQuantity, setAddToCartQuantity] = useState(1)
   const [addedToCart, setAddedToCart] = useState(false)
@@ -92,18 +91,18 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                     Qty
                   </div>
                   <div className="flex">
-                    <a
+                    <button
                       className={`${addToCartQuantity === 1 ? 'opacity-40 pointer-events-none': ''} cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights`} 
                       onClick={decrementButtonHandler}
                       >
                       <FaMinus/>
-                    </a>
+                    </button>
                     <div title="Current quantity" className="w-4 flex flex-col justify-center items-center text-xl">
                       {addToCartQuantity}
                     </div>
-                    <div title="+" className="cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights" onClick={incrementButtonHandler}>
+                    <button title="+" className="plus cursor-pointer mx-2 border rounded-lg border-transparent p-2 bg-sohoLights" onClick={incrementButtonHandler}>
                       <FaPlus />
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -111,7 +110,7 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                 <button 
                   className="bg-sohoLights cursor-pointer w-full text-hemocyanin py-4 border rounded-lg border-transparent"
                   onClick={() => {
-                    increaseCartQuantity(id, addToCartQuantity),
+                    increaseCartQuantity(id, addToCartQuantity, name),
                     setAddedToCart(true)
                   }}
                 >
