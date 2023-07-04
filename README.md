@@ -2,6 +2,9 @@
 
 # Octopus Frontend code test
 
+# **Instructions** 
+
+
 In this code test, you'll be asked to:
 
 - Make a simple React app that follows the design in `design.jpg`, consumes the API and makes the front end tests pass. Ideally the app should be responsive.
@@ -64,7 +67,23 @@ We would like you to demonstrate your ability to:
 - Write Typescript typings for the components you create, and also the typings for the GraphQL API response
 
 Notes:
+
 - This has not been set up with and type of CSS-in-JS, but if that is something you would like to add, please feel free.
 
 Best of luck!
 
+
+
+# **Tech Stack I used** 🚀
+
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
+- React Testing Library
+
+# **Screenshots** ⭐️
+
+**Homepage:**
+
+<img src="./client/public/homepage.png" width="300">
