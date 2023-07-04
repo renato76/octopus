@@ -4,7 +4,6 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 
 const ShoppingCartCard = ({ item }) => {
   const { increaseItemQuantity, decreaseItemQuantity } = useShoppingCart()
-  console.log('item', item)
   return (
    <>
       <div className="flex-col py-4 h-32 rounded-md bg-[#6810cd]">
