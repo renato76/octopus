@@ -1,8 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaShoppingBasket } from 'react-icons/fa'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 const Header: React.FC = () => {
+  const {openCart} = useShoppingCart()
   return (
     <div className="flex flex-col justify-center max-w-xs m-auto">
       <div className="flex justify-between py-2">
@@ -14,7 +16,7 @@ const Header: React.FC = () => {
             className="cursor-pointer" 
           />
         </div>
-        <div className="flex items-center mb-3">
+        <div className="flex items-center mb-3" onClick={openCart}>
           <FaShoppingBasket size={30} />
         </div>
       </div>

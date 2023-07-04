@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react"
+import ShoppingCart from "../components/ShoppingCart "
 
 type ShoppingCartProviderProps = {
   children: ReactNode
@@ -7,11 +8,12 @@ type ShoppingCartProviderProps = {
 type CartItem = {
   id: number
   quantity: number
+  name: string
 }
 
 type ShoppingCartContext = {
   getItemQuantity: (id: number) => number
-  increaseCartQuantity: (id: number, quantity: number) => void
+  increaseCartQuantity: (id: number, quantity: number, name: string) => void
   decreaseCartQuantity: (id: number) => void
   removeFromCart: (id: number) => void
   cartItems: CartItem[]
@@ -39,14 +41,14 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
     return cartItems.find(item => item.id === id)?.quantity || 0
   } 
 
-  const increaseCartQuantity = (id: number, quantity: number) => {
+  const increaseCartQuantity = (id: number, quantity: number, name: string) => {
     setCartItems(currItems => {
       if (currItems.find(item => item.id === id) == null) {
-        return [...currItems, { id, quantity: quantity }]
+        return [...currItems, { id, quantity: quantity, name }]
       } else {
         return currItems.map(item => {
           if (item.id === id) {
-            return  { ...item, quantity: item.quantity + quantity }
+            return  { ...item, quantity: item.quantity + quantity, name }
           } else {
             return item
           }
@@ -91,6 +93,7 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
       }}
     >
       {children}
+      {isOpen && <ShoppingCart />}
     </ShoppingCartContext.Provider>
   )
 }
