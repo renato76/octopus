@@ -1,9 +1,9 @@
-import React from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const {openCart} = useShoppingCart()
   return (
     <div className="flex flex-col justify-center max-w-xs m-auto">

@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { FC, useState } from 'react'
 import Image from 'next/image'
 import { FaMinus, FaPlus } from 'react-icons/fa'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { CartItemsTypes } from '../interfaces'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 
-const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
-  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, cartQuantity, openCart, closeCart } = useShoppingCart()
-  const quantity = getItemQuantity(allProducts[0].fields.id)
-
+const ProductCard: FC<CartItemsTypes> = ({ allProducts }) => {
+  const { addToCart, cartItems, openCart } = useShoppingCart()
   const [addToCartQuantity, setAddToCartQuantity] = useState(1)
   const [addedToCart, setAddedToCart] = useState(false)
-
 
   const incrementButtonHandler = (event: React.MouseEvent) => {
     event.preventDefault()
@@ -61,7 +58,7 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                 onClick={openCart}
               >
                 {addedToCart && (
-                  <span className=" mr-2 mt-1">{cartItems[0].quantity}</span>
+                  <span className=" mr-2 mt-1">{cartItems[0]?.quantity}</span>
                 )}
                 <FaShoppingBasket size={30} />
               </button>
@@ -110,7 +107,7 @@ const ProductCard: React.FC<CartItemsTypes> = ({ allProducts }) => {
                 <button 
                   className="bg-sohoLights cursor-pointer w-full text-hemocyanin py-4 border rounded-lg border-transparent"
                   onClick={() => {
-                    increaseCartQuantity(id, addToCartQuantity, name),
+                    addToCart(id, addToCartQuantity, name, imgUrl, price),
                     setAddedToCart(true)
                   }}
                 >

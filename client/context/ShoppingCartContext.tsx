@@ -9,13 +9,16 @@ type CartItem = {
   id: number
   quantity: number
   name: string
+  image: string
+  price: number
 }
 
 type ShoppingCartContext = {
   getItemQuantity: (id: number) => number
-  increaseCartQuantity: (id: number, quantity: number, name: string) => void
-  decreaseCartQuantity: (id: number) => void
+  addToCart: (id: number, quantity: number, name: string, image: string, price: number) => void
   removeFromCart: (id: number) => void
+  increaseItemQuantity: (id: number) => void
+  decreaseItemQuantity: (id: number) => void
   cartItems: CartItem[]
   cartQuantity: number
   openCart: () => void
@@ -41,14 +44,14 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
     return cartItems.find(item => item.id === id)?.quantity || 0
   } 
 
-  const increaseCartQuantity = (id: number, quantity: number, name: string) => {
+  const addToCart = (id: number, quantity: number, name: string, image: string, price: number) => {
     setCartItems(currItems => {
       if (currItems.find(item => item.id === id) == null) {
-        return [...currItems, { id, quantity: quantity, name }]
+        return [...currItems, { id, quantity, name, image, price }]
       } else {
         return currItems.map(item => {
           if (item.id === id) {
-            return  { ...item, quantity: item.quantity + quantity, name }
+            return  { ...item, quantity: item.quantity + quantity, name, image, price }
           } else {
             return item
           }
@@ -57,7 +60,25 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
     })
   }
 
-  const decreaseCartQuantity = (id: number) => {
+  const removeFromCart = (id: number) => {
+    setCartItems(currItems => {
+      return currItems.filter(item => item.id !== id)
+    })
+  }
+
+  const increaseItemQuantity = (id: number) => {
+    setCartItems(currItems => {
+      return currItems.map(item => {
+        if (item.id === id) {
+          return  { ...item, quantity: item.quantity + 1 }
+        } else {
+          return item
+        }
+      })
+    })
+  }
+
+  const decreaseItemQuantity = (id: number) => {
     setCartItems(currItems => {
       if (currItems.find(item => item.id === id)?.quantity === 1) {
         return currItems.filter(item => item.id !== id)
@@ -73,18 +94,13 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
     })
   }
 
-  const removeFromCart = (id: number) => {
-    setCartItems(currItems => {
-      return currItems.filter(item => item.id !== id)
-    })
-  }
-
   return (
     <ShoppingCartContext.Provider 
       value={{ 
         getItemQuantity, 
-        increaseCartQuantity, 
-        decreaseCartQuantity, 
+        addToCart, 
+        decreaseItemQuantity, 
+        increaseItemQuantity,
         removeFromCart, 
         cartItems,
         cartQuantity,

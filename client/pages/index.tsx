@@ -8,11 +8,14 @@ export default function Home() {
             alt="Octopus Energy Logo"
           />
         </figure>
-        <h1>Welcome to the Octopus Energy Frontend code test!</h1>
-        <p>
-          Get started by visiting the <code>/product</code> URL and editing{" "}
-          <code>client/pages/product.js</code>
-        </p>
+        <div className="flex justify-center mt-6">
+          <h1>Welcome to the Octopus Energy Frontend code test!</h1>
+        </div>
+        <div className="mt-12">
+          <button className="px-4 md:px-12 py-2 border border-solid border-sohoLights  hover:bg-sohoLights transition duration-700 ease-in-out rounded-lg cursor-pointer">
+            <a href="/product">Get Started</a>
+          </button>
+        </div>
       </div>
     </main>
   );
