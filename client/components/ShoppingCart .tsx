@@ -4,7 +4,6 @@ import { AiOutlineClose } from "react-icons/ai"
 
 const ShoppingCart  = () => {
   const {closeCart, cartItems} = useShoppingCart()
-  console.log('cartItems >>>', cartItems)
   return (
     <div className="absolute top-0 left-0 h-[1000px] z-30 w-full bg-[#0f0d23] px-4 py-2">
       <div>
