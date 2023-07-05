@@ -9,7 +9,7 @@ const ShoppingCartCard = ({ item }) => {
     <div className="flex justify-center mb-12">
       <h1 className="text-4xl">Basket</h1>
     </div>
-    <div className="w-full">
+    <div className="w-full my-0 mx-auto md:max-w-2xl">
       <div className="flex flex-col justify-center h-40 py-4 rounded-md bg-[#6810cd]">
         <div className="flex">
           <div className="mx-2">
@@ -57,7 +57,7 @@ const ShoppingCartCard = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="mt-24 flex flex-col">
+      <div className="mt-48 flex flex-col">
         <div className="w-full border border-white rounded-md p-4 flex flex-col">
           <div className="flex justify-center">
             <h2 className="text-2xl">Basket Summary</h2>
