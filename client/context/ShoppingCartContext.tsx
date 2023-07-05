@@ -23,6 +23,7 @@ type ShoppingCartContext = {
   cartQuantity: number
   openCart: () => void
   closeCart: () => void
+  total: number
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContext)
@@ -35,7 +36,9 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
-  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+  const cartQuantity = cartItems.reduce((quantity, item) => (item.quantity * Number(item.price))/100, 0)
+
+  const total = cartQuantity + 4.99
 
   const openCart = () => setIsOpen(true)
   const closeCart = () => setIsOpen(false)
@@ -106,6 +109,7 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
         cartQuantity,
         openCart,
         closeCart,
+        total,
       }}
     >
       {children}

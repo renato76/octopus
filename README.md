@@ -87,3 +87,9 @@ Best of luck!
 **Homepage:**
 
 <img src="./client/public/homepage.png" width="300">
+
+<br />
+
+**Basket:**
+
+<img src="./client/public/basket-summary.png" width="300">
